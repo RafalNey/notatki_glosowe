@@ -11,6 +11,12 @@ from qdrant_client.models import Distance, VectorParams, PointStruct
 # konfiguracja
 env = dotenv_values('.env')
 
+# Secrets using Streamlit Cloud Mechanism
+if 'QDRANT_URL' in st.secrets:
+    env['QDRANT_URL'] = st.secrets['QDRANT_URL']
+if 'QDRANT_API_KEY' in st.secrets:
+    env['QDRANT_API_KEY'] = st.secrets['QDRANT_API_KEY']
+
 EMBEDDING_DIM = 3072
 EMBEDDING_MODEL = 'text-embedding-3-large'
 AUDIO_TRANSCRIBE_MODEL = 'whisper-1'
